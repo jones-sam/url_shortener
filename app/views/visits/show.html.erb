@@ -1,0 +1,20 @@
+<div class="visit-info">
+  <h1>Visit Information for <%= request.base_url + "/" + @link.token %></h1>
+  <h3>Original Link: <%= @link.url %></h3>
+
+  <p>Total Visits: <%= @visits.count %></p>
+
+  <% if @visits.count > 0 %>
+    <h2>IP Addresses</h2>
+    <ul>
+      <% @visits.order(created_at: :desc).each do |visit| %>
+        <li>
+          <%= visit.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+          <strong>
+            <%= visit.ip_address %>
+          </strong>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

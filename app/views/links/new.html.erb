@@ -1,0 +1,23 @@
+<h1>URL Shortener</h1>
+
+<%= form_with model: @link, url: links_path, local: true do |f| %>
+  <%= f.text_field :url, {
+    required: true,
+    placeholder: "https://google.com",
+  } %>
+
+  <%= f.submit "Shorten URL" %>
+<% end %>
+
+<br/> 
+
+<% if flash.present? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+    <br/>
+    <br/>
+    <%= link_to flash[:shortened_link], flash[:shortened_link] %>
+    <br/>
+    <%= link_to "Visit Information", flash[:shortened_link] + '/info' %>
+  </div>
+<% end %>
